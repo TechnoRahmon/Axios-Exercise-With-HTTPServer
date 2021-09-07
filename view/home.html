@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <h2>Save your Photo in our Server </h2>
+        <br>
+        <input type="url" id="url" placeholder="Image URL . . .">
+        <br> 
+        <h4>The current Saved Image : </h4><br>
+        <img src="/image" alt="image" id="img" style="width: 25%;">
+        <br><br>
+        <button id="btn">Save</button>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+
+          
+            (()=>{
+                let btn = document.getElementById('btn');
+                let img= document.getElementById('img');
+                let url = document.getElementById('url');
+
+                btn.onclick=async ()=>{
+                    try {
+                        console.log(url.value);
+                        const config = {"headers":{ "url": url.value } }
+                        
+                        let res = await axios.get('/save'  , config )
+
+                        alert(res.data)
+                        history.go(0);
+
+                    } catch (error) {
+            
+                        alert(error.message)
+                    }
+                }
+
+
+                })()
+
+
+        </script>
+
+</body>
+</html>
